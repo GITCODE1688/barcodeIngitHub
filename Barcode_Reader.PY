@@ -1,3 +1,4 @@
+#pip install opencv-python
 #pip install pyzbar
 import os
 import cv2
@@ -9,15 +10,15 @@ def BarcodeReader(image) :
     img = cv2.imread(image)
 
 #二值化     (某此圖使用二值化，辨識barcode反而更差，不太會使用)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)       #轉換前，都先將圖片轉換成灰階色彩
-    img = img = cv2.medianBlur(img, 5)   # 模糊化
-    img =  cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)      #自動二值化
+    # img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)       #轉換前，都先將圖片轉換成灰階色彩
+    # img = cv2.medianBlur(img, 5)   # 模糊化
+    # img =  cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)      #自動二值化
 
 #RESIZE
     sp = img.shape
     img_W = sp[0]
     img_H = sp[1]
-    r_size = 800
+    r_size = 1200
     rate = 1
     if img_W >r_size  :
         rate = r_size/img_W
@@ -60,6 +61,10 @@ if __name__ == "__main__":
     # image = r"./w.png"
     # image = r"./snap0079.jpg"
     image = "./traynobag.png"
+    image = "./nqsww5jSyK.png"
+    image = "./QaTWt8TIQl.png"
+    image = "./unnamed_1.jpg"
+    image = "./aAlkAODDiU.png"
     BarcodeReader(image)
     os._exit
     
