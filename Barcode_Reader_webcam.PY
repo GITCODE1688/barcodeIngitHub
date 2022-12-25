@@ -5,6 +5,7 @@ import os
 import cv2
 import pyzbar.pyzbar
 from pyzbar.pyzbar import decode
+import detect_image
 
 def BarcodeReader(image) :
     barcodeSeq = 0
@@ -23,6 +24,8 @@ def BarcodeReader(image) :
         ret, frame = cap.read()
         print("{0} , {1}".format (ret,datetime.datetime.now()))
         img = frame
+        r_image, ObjectList, ThresholdList = detect_image(img)
+
         detectedBarcode = decode(img)
         if not detectedBarcode :
             # (x,y,w,h) = barcode.rect
