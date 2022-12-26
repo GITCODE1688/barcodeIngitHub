@@ -1,8 +1,11 @@
 #pip install opencv-python
 #pip install pyzbar
+#pyzbar 不支援Data Matrix
 import os
 import cv2
+import pyzbar
 import pyzbar.pyzbar
+from pyzbar.pyzbar import decode, ZBarSymbol
 from pyzbar.pyzbar import decode
 
 def BarcodeReader(image) :
@@ -27,6 +30,7 @@ def BarcodeReader(image) :
     print("{0},{1} / rate:{2}".format(img_W,img_H,rate))
     img=cv2.resize(img,None,fx=rate,fy=rate,interpolation=cv2.INTER_AREA)   
 
+    
     detectedBarcode = decode(img)
 
     if not detectedBarcode :
@@ -35,6 +39,7 @@ def BarcodeReader(image) :
         cv2.waitKey(0)
         cv2.destroyAllWindows         
     else:
+        
         for barcode in detectedBarcode:
             (x,y,w,h) = barcode.rect
 
@@ -55,16 +60,17 @@ def BarcodeReader(image) :
 
 if __name__ == "__main__":
   # Take the image from user
-    # image="./FT_WP_BOE.png"
+    image="./FT_WP_BOE.png"
     # image = r"./snap0382.jpg"
-    # image = r"./snap0077.jpg"
+    image = "./snap0077.jpg"
     # image = r"./w.png"
     # image = r"./snap0079.jpg"
-    image = "./traynobag.png"
-    image = "./nqsww5jSyK.png"
-    image = "./QaTWt8TIQl.png"
-    image = "./unnamed_1.jpg"
-    image = "./aAlkAODDiU.png"
+    # image = "./traynobag.png"
+    # image = "./nqsww5jSyK.png"
+    # image = "./QaTWt8TIQl.png"
+    # image = "./unnamed_1.jpg"
+    # image = "./aAlkAODDiU.png"
+    image = "./aAlkAODDiU.jpg"
     BarcodeReader(image)
     os._exit
     
